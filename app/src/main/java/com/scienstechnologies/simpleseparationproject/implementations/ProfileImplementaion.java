@@ -22,15 +22,19 @@ public class ProfileImplementaion {
 
     public void getResponseAndCallback() {
         getActivity().showProgressBar();
+        getActivity().setName("");
+        getActivity().setLocation("");
         Call<RootModel> rootModelCall =  RetrofitAdapterCreator.getAPIServiceInstance(IAppConstants.BASE_URL)
                 .getUserInfo(getActivity().getTextFromET());
         rootModelCall.enqueue(new Callback<RootModel>() {
             @Override
             public void onResponse(Call<RootModel> call, Response<RootModel> response) {
                 RootModel model = response.body();
-                getActivity().setLocation(model.getLocation());
-                getActivity().setName(model.getLoginName());
-                getActivity().hideProgressBar();
+                if (model!=null) {
+                    getActivity().setLocation(model.getLocation());
+                    getActivity().setName(model.getLoginName());
+
+                }getActivity().hideProgressBar();
             }
 
             @Override

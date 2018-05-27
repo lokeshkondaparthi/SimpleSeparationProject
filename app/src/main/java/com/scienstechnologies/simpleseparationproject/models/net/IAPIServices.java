@@ -15,12 +15,4 @@ public interface IAPIServices {
     @GET("users/{hai}")
     Call<RootModel> getUserInfo(@Path("hai") String name);
 
-
-
-    @FormUrlEncoded
-    @POST("login")
-    Call<LoginRootModel> loginUser(@Field("email_id") String emailId, @Field("password") String password,
-                                   @Field("user_type") String newP);
-
-
 }
